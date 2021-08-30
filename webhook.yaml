@@ -1,4 +1,4 @@
-apiVersion: tekton.dev/v1alpha1
+apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
   name: reverseword-build-triggertemplate
@@ -42,7 +42,7 @@ spec:
             resourceRef:
               name: reverse-words-image
 ---
-apiVersion: tekton.dev/v1alpha1
+apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
   name: github-triggerbinding
@@ -53,7 +53,7 @@ spec:
     - name: gitrepositoryurl
       value: $(body.repository.url)
 ---
-apiVersion: tekton.dev/v1alpha1
+apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
   name: webhook
@@ -65,7 +65,7 @@ spec:
       template:
         name: reverseword-build-triggertemplate
 ---
-apiVersion: route.openshift.io/v1
+apiVersion: triggers.route.openshift.io/v1
 kind: Route
 metadata:
   labels:
